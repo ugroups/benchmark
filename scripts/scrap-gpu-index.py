@@ -27,17 +27,15 @@ soup = BeautifulSoup(content, "html.parser")
 title = soup.select("div.row div h1")[0]
 description = title.find_next('div')
 table = soup.select("div.row table")[0]
-
-#print("#/bin/bash")
-#for elem in table.find_all('a'):
-#    print(elem.get('href').replace('/gpu/', 'python scripts/scrap-gpu.py '))
-#exit()
+for elem in table.find_all('a'):
+    #print(elem.get('href').replace('/gpu/', 'python scripts/scrap-gpu.py '))
+    elem['href'] = elem.get('href').replace('/gpu/', './gpu/') + '.html'
 
 content = '<link rel="stylesheet" type="text/css" media="screen" href="./css/combined.min.css" />\n' + \
           '<script src="./js/fontawesome-v5.7.0-all.js" ></script>\n' + \
           str(title) + '\n' + \
           str(description) + '\n' + \
-          str(table).replace('/gpu/', './gpu/') + '\n'
+          str(table) + '\n'
 
 with open(sname, "w") as file:
     file.write(content)
