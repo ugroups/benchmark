@@ -17,6 +17,8 @@ sname = 'gpu/' + slug + ".html"
 #mname = 'gpu/' + slug + ".md"
 content = ""
 
+if not os.path.isdir(os.path.dirname(fname)):
+    os.mkdir(os.path.dirname(fname))
 if not os.path.isdir(os.path.dirname(sname)):
     os.mkdir(os.path.dirname(sname))
 
